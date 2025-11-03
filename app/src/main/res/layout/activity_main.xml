@@ -113,15 +113,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/etBirthday" />
 
-        <CalendarView
-            android:id="@+id/calendarView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/etBirthday" />
-
         <TextView
             android:id="@+id/labelAddress"
             android:layout_width="wrap_content"
@@ -129,7 +120,7 @@
             android:layout_marginTop="16dp"
             android:text="Address"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/calendarView" />
+            app:layout_constraintTop_toBottomOf="@id/etBirthday" />
 
         <EditText
             android:id="@+id/etAddress"

@@ -1,5 +1,6 @@
 package com.example.registerformapp
 
+import android.app.DatePickerDialog
 import android.graphics.Color
 import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
@@ -9,6 +10,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.core.view.isVisible
 import com.example.registerformapp.databinding.ActivityMainBinding
+import java.util.Calendar
 
 class MainActivity : AppCompatActivity() {
 
@@ -29,13 +31,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupListeners() {
         binding.btnSelectDate.setOnClickListener {
-            binding.calendarView.isVisible = !binding.calendarView.isVisible
-        }
-
-        binding.calendarView.setOnDateChangeListener { _, year, month, dayOfMonth ->
-            val selectedDate = "$dayOfMonth/${month + 1}/$year"
-            binding.etBirthday.setText(selectedDate)
-            binding.calendarView.isVisible = false
+            showDatePickerDialog()
         }
 
         binding.btnRegister.setOnClickListener {
@@ -45,6 +41,25 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, "Vui lòng điền đầy đủ thông tin", Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    private fun showDatePickerDialog() {
+        val calendar = Calendar.getInstance()
+        val year = calendar.get(Calendar.YEAR)
+        val month = calendar.get(Calendar.MONTH)
+        val day = calendar.get(Calendar.DAY_OF_MONTH)
+
+        val datePickerDialog = DatePickerDialog(
+            this,
+            { _, selectedYear, selectedMonth, selectedDayOfMonth ->
+                val selectedDate = "$selectedDayOfMonth/${selectedMonth + 1}/$selectedYear"
+                binding.etBirthday.setText(selectedDate)
+            },
+            year,
+            month,
+            day
+        )
+        datePickerDialog.show()
     }
 
     private fun validateAllInputs(): Boolean {
